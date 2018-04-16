@@ -181,17 +181,17 @@
 
 
                     <div class="form-group">
-                        <label for="typeOfPlan">Would you like to include Co-Pay plans?</label>
-                        <input type="checkbox" [(ngModel)]="isCopayPlan">
+                        <label for="typeOfPlan" id="copayid">Would you like to include Co-Pay plans?</label>
+                        <input id="copayidchk" type="checkbox" [(ngModel)]="isCopayPlan">
                     </div>
 
                     <div>
 
-                        <label for="empContribute"> Will employer contribute toward the cost of the employee’s dental coverage? </label>
+                        <label id="empid" for="empContribute"> Will employer contribute toward the cost of the employee’s dental coverage? </label>
                         
                         <section style="display:inline-block" class="vall">
-                            <select class="" [(ngModel)]="empContribute">
-                        <option *ngFor="let element of empContributeValues" [ngValue]="element.value">
+                            <select class="fsize" [(ngModel)]="empContributeModel">
+                        <option *ngFor="let element of arrContributes" [ngValue]="element">
                         {{element.value}}
                         </option>
                         </select>
@@ -231,7 +231,7 @@
 
 
 
-                    <div class="rats">Ratings</div>
+                    <div class="rats">Plans</div>
                     <!-- Ratings -->
                     <section>
 

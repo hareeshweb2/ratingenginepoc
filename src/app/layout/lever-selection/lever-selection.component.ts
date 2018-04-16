@@ -20,6 +20,8 @@ import { Message } from 'primeng/api';
     animations: [routerTransition()]
 })
 export class LeverSelectionComponent implements OnInit {
+
+    empContributeModel: any;
     isCopayPlan: boolean=true;
     endPointUrl: string="http://pricing-qa.corvestacloud.com:8708";
         //endPointUrl: string="http://rhel7-ws04:8708";
@@ -57,13 +59,15 @@ export class LeverSelectionComponent implements OnInit {
     arrPlanTypes: any;
     arrNAICS: any;
     arrNoOfEmps: any;
-    arrCoverages:any;
+    arrCoverages:any;  
+    arrContributes: any;
 
     regionLeverId: any;
     planTypeLeverId: any;
     NAICSLeverId: any;
     noOfEmpsLeverId: any;
     coveragesLeverId: any;
+    contributesLeverId: any;
     planLeverId: any;
 
     constructor(private fb: FormBuilder, private http: HttpClient) { }
@@ -224,12 +228,12 @@ export class LeverSelectionComponent implements OnInit {
                         this.coveragesLeverId = this.initialResponse.levers.find(
                             i => i.name == "REPLACING COVERAGE"
                         ).id;
-                        // this.arrNAICS = this.initialResponse.levers.find(
-                        //     i => i.name == "NAICS"
-                        // ).elements;
-                        // this.NAICSLeverId = this.initialResponse.levers.find(
-                        //     i => i.name == "NAICS"
-                        // ).id;
+                        this.arrContributes = this.initialResponse.levers.find(
+                            i => i.name == "EMPLOYER WILL CONTRIBUTE"
+                        ).elements;
+                        this.contributesLeverId = this.initialResponse.levers.find(
+                            i => i.name == "EMPLOYER WILL CONTRIBUTE"
+                        ).id;
                     }
                 },
                 error => {
@@ -733,18 +737,26 @@ export class LeverSelectionComponent implements OnInit {
             selectedValue: this.leverForm.value.noOfEmps.toString()
         };
         this.ratesRequest.selections.push(empLever);
-        let coverageLever:any={
+        let planTypeLever:any={
             leverId: this.planTypeLeverId,
             elementId: this.leverForm.value.typeOfPlan.id,
             selectedValue: this.leverForm.value.typeOfPlan.value.toLowerCase()
         };
-        this.ratesRequest.selections.push(coverageLever);
-        let planTypeLever:any={
+        this.ratesRequest.selections.push(planTypeLever);
+
+        let empContributeLever:any={
+            leverId: this.contributesLeverId,
+            elementId: this.empContributeModel.id,
+            selectedValue: this.empContributeModel.value.toLowerCase()
+        };
+        this.ratesRequest.selections.push(empContributeLever);
+
+        let coverageLever:any={
             leverId: this.coveragesLeverId,
             elementId: this.leverForm.value.replacingCoverage.id,
             selectedValue: this.leverForm.value.replacingCoverage.value.toLowerCase()
         };
-        this.ratesRequest.selections.push(planTypeLever);
+        this.ratesRequest.selections.push(coverageLever);
 
         
 
