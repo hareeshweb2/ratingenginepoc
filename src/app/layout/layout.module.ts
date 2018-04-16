@@ -11,6 +11,7 @@ import { LeverSelectionComponent } from './lever-selection/lever-selection.compo
 import { FilterPipe,FilterPipe2 } from '../shared/pipes/filter.pipe';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import {GrowlModule} from 'primeng/growl';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import {GrowlModule} from 'primeng/growl';
         LayoutRoutingModule, ReactiveFormsModule, FormsModule,
         NgbDropdownModule.forRoot(),
         NgHttpLoaderModule,
-        GrowlModule
+        GrowlModule,
+        CheckboxModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LeverSelectionComponent,FilterPipe, FilterPipe2 ]
 })
