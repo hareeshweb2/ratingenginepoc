@@ -182,7 +182,9 @@
 
                     <div class="form-group">
                         <br><br>
-                        <p-checkbox name="group1"  label="Would you like to include Co-Pay plans?" [(ngModel)]="isCopayPlan" inputId="ny"></p-checkbox>
+                        <!-- <p-checkbox name="group1"  label="Would you like to include Co-Pay plans?" [(ngModel)]="isCopayPlan" inputId="ny"></p-checkbox> -->
+                    <span class="fsize">Would you like to include Co-Pay plans?</span>
+                        <input type="checkbox" id="copayidchk" [(ngModel)]="isCopayPlan">
                     </div>
 
                     <div>
@@ -253,11 +255,22 @@
                             <!-- <div class="network-name">{{network}}</div> -->
                             <div class="form-group" *ngFor="let ratedPlan of rates.ratedPlans">
                                 <div class="col-sm-4 plan-name">{{ratedPlan.name}}</div>
-                                <div class="col-sm-8"  *ngFor="let rate of ratedPlan.rateGroups[0].rates">
-                                        <label for="">{{rate.tier}}</label>
-                                        <span>&nbsp;{{rate.amount}}  </span>
+                                <div class="col-sm-8"  *ngFor="let rateGroup of ratedPlan.rateGroups">
+                                    <div class="rate-grp">
+                                        <span class="spn">{{rateGroup.groupName}}</span>
+                                        <div class="rates" *ngFor="let rate of rateGroup.rates">
+                                            <label for="">{{rate.tier}}</label>
+                                            <span>&nbsp;{{rate.amount}}  </span>
+                                        </div>
+                                    </div>
+                                    
+
                                 </div>
                                
+
+                                
+
+
                             </div>
 
 

@@ -42,7 +42,6 @@
     font-weight: bold;
     color: blue;
     padding-left: 2px;
-    ;
 }
 #copayid,#empid{
     font-size: 17px!important;
@@ -50,9 +49,10 @@ color: #313131;
 }
 #copayidchk{
     font-size: 17px!important;
-        width: 28px;
-    height: 28px;
-    margin-top: 30px;
+        width: 18px;
+    height: 18px;
+    margin-top: 20px;
+    margin-left:5px;
 }
 .network-panel {
     background: #e8e8e8;
@@ -63,7 +63,7 @@ color: #313131;
 
 .network-panel span {
     color: #260cff;
-    font-size: 14px;
+    font-size: 16px;
 }
 .nw{
     color:rgb(255, 174, 0);
@@ -90,4 +90,9 @@ color: #313131;
 .plan-name{
     color: #ff640c;
     font-weight: bold;
+}
+
+.rate-grp span.spn {
+    color: #f600a1!important;
+    font-size: 16px!important;
 }
