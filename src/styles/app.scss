@@ -4,3 +4,10 @@
 @import "utils";
 @import "rtl";
 @import "responsive";
+
+.ui-growl{
+    z-index:1330!important;
+}
+.ui-growl {
+    top: 30px!important;
+}

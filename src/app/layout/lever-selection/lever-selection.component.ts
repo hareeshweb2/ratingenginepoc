@@ -83,10 +83,6 @@ export class LeverSelectionComponent implements OnInit {
             zipCode: ["24401", [Validators.required, Validators.pattern("[0-9]{5}")]],
             noOfEmps: ["10", [Validators.required]],
             noOfEmpsVA: ["1", [Validators.required]]
-            //,
-            //region: ["", [Validators.required]]
-            //,
-            // noOfEmps2: ['', [Validators.required]]
         });
 
         let dateObj: any = new Date();
@@ -119,12 +115,6 @@ export class LeverSelectionComponent implements OnInit {
                         this.plans = [];
                         return;
                     } else {
-                        // this.arrRegions = this.initialResponse.levers.find(
-                        //     i => i.name == "REGION"
-                        // ).elements;
-                        // this.regionLeverId = this.initialResponse.levers.find(
-                        //     i => i.name == "REGION"
-                        // ).id;
                         this.arrNoOfEmps = this.initialResponse.levers.find(
                             i => i.name == "NUMBER OF EMPLOYEES"
                         ).elements;
@@ -154,13 +144,7 @@ export class LeverSelectionComponent implements OnInit {
                 error => {
                     this.plans = [];
                     console.log("Response ERROR: " + JSON.stringify(error));
-                    if (error.message == "Resource not found")
-                        alert("Data not found for this search");
-                    else
-                        alert(
-                            "Data not found for this search, Might be bad request"
-                        );
-                    console.error("Error submitting post request!");
+                    this.msgs.push({ severity: 'error', summary: 'Validation', detail: error.error.message });
                     return Observable.throw(error);
                 }
             );
@@ -178,18 +162,6 @@ export class LeverSelectionComponent implements OnInit {
         this.showRates = false;
         this.rates = [];
         this.msgs = [];
-        // let request2 =
-        //     {
-        //         healthcareCompanyId: 1,
-        //         subcompanyId: 1,
-        //         effectiveDate: this.leverForm.value.dateEffective,
-        //         zipCode: this.leverForm.value.zipCode,
-        //         numberOfEmployees: this.leverForm.value.noOfEmps,
-        //         typeOfPlan: this.leverForm.value.typeOfPlan,
-        //         selectedLevers: {
-        //             naics: { id: "naics", name: "naics", selectedElement: { id: this.leverForm.value.nics, leverId: "naics" }, isTerminal: false }
-        //         }
-        //     };
 
         let request2 = {
             healthcareCompanyId: 1,
@@ -198,11 +170,6 @@ export class LeverSelectionComponent implements OnInit {
             zipCode: this.leverForm.value.zipCode,
             numberOfEmpsOutsideVa: this.leverForm.value.noOfEmpsVA,
             selections: [
-                // {
-                //     leverId: this.regionLeverId,
-                //     elementId: null,
-                //     selectedValue: this.leverForm.value.zipCode
-                // },
                 {
                     leverId: this.noOfEmpsLeverId,
                     elementId: null,
@@ -218,12 +185,6 @@ export class LeverSelectionComponent implements OnInit {
                     elementId: this.leverForm.value.replacingCoverage.id,
                     selectedValue: this.leverForm.value.replacingCoverage.value.toLowerCase()
                 }
-                // ,
-                // {
-                //     leverId: this.NAICSLeverId,
-                //     elementId: null,
-                //     selectedValue: this.leverForm.value.nics
-                // }
             ]
         };
 
@@ -238,18 +199,13 @@ export class LeverSelectionComponent implements OnInit {
             )
             .subscribe(
                 data => {
+                    this.msgs=[];
                     this.response2 = data;
                     if (this.response2.message) {
                         alert(this.response2.message);
                         this.plans = [];
                         return;
                     } else {
-                        // this.plans = this.response2.levers.find(
-                        //     i => i.name == "PLAN"
-                        // ).elements;
-                        // this.planLeverId = this.response2.levers.find(
-                        //     i => i.name == "PLAN"
-                        // ).id; //commented for ticket 1004 work
                         this.selectedPlan = "junk";
                         this.response3 = data;
                         this.leversWithoutNetworks = this.response3.levers.filter(el => el.network == null);
@@ -262,12 +218,7 @@ export class LeverSelectionComponent implements OnInit {
                 error => {
                     this.plans = [];
                     console.log("Response ERROR: " + JSON.stringify(error));
-                    if (error.message == "Resource not found")
-                        alert("Data not found for this search");
-                    else {
-                        this.msgs.push({ severity: 'error', summary: 'Validation', detail: error.error.message });
-                    }
-                    console.error("Error submitting post request!");
+                    this.msgs.push({ severity: 'error', summary: 'Validation', detail: error.error.message });
                     return Observable.throw(error);
                 }
             );
@@ -304,6 +255,7 @@ export class LeverSelectionComponent implements OnInit {
             )
             .subscribe(
                 data => {
+                    this.msgs=[];
                     this.response3 = data;
                     this.leversWithoutNetworks = this.response3.levers.filter(el => el.network == null);
                     if (this.response3.message) {
@@ -314,13 +266,7 @@ export class LeverSelectionComponent implements OnInit {
                 error => {
                     this.plans = [];
                     console.log("Response ERROR: " + JSON.stringify(error));
-                    if (error.message == "Resource not found")
-                        alert("Data not found for this search");
-                    else
-                        alert(
-                            "Data not found for this search, Might be bad request"
-                        );
-                    console.error("Error submitting post request!");
+                    this.msgs.push({ severity: 'error', summary: 'Validation', detail: error.error.message });
                     return Observable.throw(error);
                 }
             );
@@ -404,6 +350,7 @@ export class LeverSelectionComponent implements OnInit {
             )
             .subscribe(
                 data => {
+                    this.msgs=[];
                     this.showRates = true;
 
                     let ratesResponse: any = data;
@@ -417,11 +364,7 @@ export class LeverSelectionComponent implements OnInit {
                 },
                 error => {
                     console.log("Response ERROR: " + JSON.stringify(error));
-                    if (error.message == "Resource not found")
-                        alert("Data not found for this search");
-                    else
                     this.msgs.push({ severity: 'error', summary: 'Validation', detail: error.error.message });
-                    console.error("Error submitting post request!");
                     return Observable.throw(error);
                 }
             );
