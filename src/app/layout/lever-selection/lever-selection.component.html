@@ -101,19 +101,18 @@
                     </div>
 
 
-                    <!-- <div class="form-group">
-                        <label for="region">No Of Employees</label>
-                        <select class="form-control" id="noOfEmps" formControlName="noOfEmps">
-      <option *ngFor="let noEmp of arrNoOfEmps" [value]="noEmp.value">{{noEmp.value}}</option>
-    </select>
-                        <span class="help-block" *ngIf="(leverForm.get('noOfEmps').touched || 
-                                                         leverForm.get('noOfEmps').dirty) && 
-                                                         leverForm.get('noOfEmps').errors">
-                            <span *ngIf="leverForm.get('noOfEmps').errors.required">
-                                Please select no. Of Employess.
+                    <div class="form-group">
+                        <label for="noOfEmps">Eligible No Of Employees</label>
+                        <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="Eligible No Of Employees" aria-describedby="Eligible No Of Employees" placeholder="Eligible No Of Employees" formControlName="eligibleNumberOfEmps">
+                        <span class="help-block" *ngIf="(leverForm.get('eligibleNumberOfEmps').touched || 
+                                                         leverForm.get('eligibleNumberOfEmps').dirty) && 
+                                                         leverForm.get('eligibleNumberOfEmps').errors">
+                            <span *ngIf="leverForm.get('eligibleNumberOfEmps').errors.required">
+                                Please enter Eligible No Of Employees.
                             </span>
+
                         </span>
-                    </div> -->
+                    </div>
 
 
                     <div class="form-group">

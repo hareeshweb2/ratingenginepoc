@@ -22,14 +22,14 @@ import { Message } from 'primeng/api';
 export class LeverSelectionComponent implements OnInit {
 
     empContributeModel: any;
-    isCopayPlan: boolean=true;
-    endPointUrl: string="http://pricing-qa.corvestacloud.com:8708";
-        //endPointUrl: string="http://rhel7-ws04:8708";
-    empContribute:any;
-    empContributeValues:any=[
-        {id:1,value:"Yes  (show Contributory Plans only)"},
-        {id:2,value:"No (show Voluntary Plans only)"},
-        {id:3,value:"Not sure (show all plans available)"}
+    isCopayPlan: boolean = true;
+    endPointUrl: string = "http://pricing-qa.corvestacloud.com:8708";
+    //endPointUrl: string="http://rhel7-ws04:8708";
+    empContribute: any;
+    empContributeValues: any = [
+        { id: 1, value: "Yes  (show Contributory Plans only)" },
+        { id: 2, value: "No (show Voluntary Plans only)" },
+        { id: 3, value: "Not sure (show all plans available)" }
     ];
     msgs: Message[] = [];
     leversWithoutNetworks: any;
@@ -59,7 +59,7 @@ export class LeverSelectionComponent implements OnInit {
     arrPlanTypes: any;
     arrNAICS: any;
     arrNoOfEmps: any;
-    arrCoverages:any;  
+    arrCoverages: any;
     arrContributes: any;
 
     regionLeverId: any;
@@ -75,14 +75,16 @@ export class LeverSelectionComponent implements OnInit {
 
 
     ngOnInit() {
+
         this.leverForm = this.fb.group({
             dateEffective: ["", [Validators.required]],
             typeOfPlan: ["", [Validators.required]],
-            replacingCoverage:["", [Validators.required]],
+            replacingCoverage: ["", [Validators.required]],
             nics: ["444110", [Validators.required]],
             zipCode: ["24401", [Validators.required, Validators.pattern("[0-9]{5}")]],
             noOfEmps: ["10", [Validators.required]],
-            noOfEmpsVA: ["1", [Validators.required]]
+            noOfEmpsVA: ["1", [Validators.required]],
+            eligibleNumberOfEmps: ["", [Validators.required]]
         });
 
         let dateObj: any = new Date();
@@ -99,11 +101,11 @@ export class LeverSelectionComponent implements OnInit {
 
         let initialRequest = { healthcareCompanyId: 1, subcompanyId: 1, effectiveDate: newdate, numberOfEmpsOutsideVa: null, zipCode: null, selections: null };
 
-      
+
         //server
         this.http
             .post(
-                this.endPointUrl+"/pricing/api/pricing/nextlevers",
+                this.endPointUrl + "/pricing/api/pricing/nextlevers",
                 initialRequest
             )
             .subscribe(
@@ -189,17 +191,17 @@ export class LeverSelectionComponent implements OnInit {
         };
 
 
- 
+
 
         //server
         this.http
             .post(
-                this.endPointUrl+"/pricing/api/pricing/nextlevers",
+                this.endPointUrl + "/pricing/api/pricing/nextlevers",
                 request2
             )
             .subscribe(
                 data => {
-                    this.msgs=[];
+                    this.msgs = [];
                     this.response2 = data;
                     if (this.response2.message) {
                         alert(this.response2.message);
@@ -250,12 +252,12 @@ export class LeverSelectionComponent implements OnInit {
         //server start
         this.http
             .post(
-                this.endPointUrl+"/pricing/api/pricing/nextlevers",
+                this.endPointUrl + "/pricing/api/pricing/nextlevers",
                 request3
             )
             .subscribe(
                 data => {
-                    this.msgs=[];
+                    this.msgs = [];
                     this.response3 = data;
                     this.leversWithoutNetworks = this.response3.levers.filter(el => el.network == null);
                     if (this.response3.message) {
@@ -286,6 +288,7 @@ export class LeverSelectionComponent implements OnInit {
             subcompanyId: 1,
             effectiveDate: this.leverForm.value.dateEffective,
             zipCode: this.leverForm.value.zipCode,
+            eligibleNumberOfEmps: this.leverForm.value.eligibleNumberOfEmps,
             naics: this.leverForm.value.nics,
             isCopayPlan: this.isCopayPlan,
             selections: []
@@ -311,46 +314,46 @@ export class LeverSelectionComponent implements OnInit {
             }
         });
 
-      
-        
-        let empLever:any= {
+
+
+        let empLever: any = {
             leverId: this.noOfEmpsLeverId,
             elementId: null,
             selectedValue: this.leverForm.value.noOfEmps.toString()
         };
         this.ratesRequest.selections.push(empLever);
-        let planTypeLever:any={
+        let planTypeLever: any = {
             leverId: this.planTypeLeverId,
             elementId: this.leverForm.value.typeOfPlan.id,
             selectedValue: this.leverForm.value.typeOfPlan.value.toLowerCase()
         };
         this.ratesRequest.selections.push(planTypeLever);
 
-        let empContributeLever:any={
+        let empContributeLever: any = {
             leverId: this.contributesLeverId,
             elementId: this.empContributeModel.id,
             selectedValue: this.empContributeModel.value.toLowerCase()
         };
         this.ratesRequest.selections.push(empContributeLever);
 
-        let coverageLever:any={
+        let coverageLever: any = {
             leverId: this.coveragesLeverId,
             elementId: this.leverForm.value.replacingCoverage.id,
             selectedValue: this.leverForm.value.replacingCoverage.value.toLowerCase()
         };
         this.ratesRequest.selections.push(coverageLever);
 
-        
+
 
         //server start
         this.http
             .post(
-                this.endPointUrl+"/pricing/api/pricing/rates",
+                this.endPointUrl + "/pricing/api/pricing/rates",
                 this.ratesRequest
             )
             .subscribe(
                 data => {
-                    this.msgs=[];
+                    this.msgs = [];
                     this.showRates = true;
 
                     let ratesResponse: any = data;
@@ -360,6 +363,9 @@ export class LeverSelectionComponent implements OnInit {
                         return;
                     } else {
                         this.rates = ratesResponse;
+                        if (this.rates.warning)
+                            this.msgs.push({ severity: 'warn', summary: 'Warning', detail: "Please Note: Some plans do not meet the participation requirements." });
+
                     }
                 },
                 error => {
