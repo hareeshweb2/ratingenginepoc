@@ -180,12 +180,12 @@ export class LeverSelectionComponent implements OnInit {
                 {
                     leverId: this.planTypeLeverId,
                     elementId: this.leverForm.value.typeOfPlan.id,
-                    selectedValue: this.leverForm.value.typeOfPlan.value.toLowerCase()
+                    selectedValue: this.leverForm.value.typeOfPlan.value
                 },
                 {
                     leverId: this.coveragesLeverId,
                     elementId: this.leverForm.value.replacingCoverage.id,
-                    selectedValue: this.leverForm.value.replacingCoverage.value.toLowerCase()
+                    selectedValue: this.leverForm.value.replacingCoverage.value
                 }
             ]
         };
@@ -294,6 +294,33 @@ export class LeverSelectionComponent implements OnInit {
             selections: []
         };
 
+        let empLever: any = {
+            leverId: this.noOfEmpsLeverId,
+            elementId: null,
+            selectedValue: this.leverForm.value.noOfEmps.toString()
+        };
+        this.ratesRequest.selections.push(empLever);
+        let planTypeLever: any = {
+            leverId: this.planTypeLeverId,
+            elementId: this.leverForm.value.typeOfPlan.id,
+            selectedValue: this.leverForm.value.typeOfPlan.value
+        };
+        this.ratesRequest.selections.push(planTypeLever);
+
+        let empContributeLever: any = {
+            leverId: this.contributesLeverId,
+            elementId: this.empContributeModel.id,
+            selectedValue: this.empContributeModel.value
+        };
+        this.ratesRequest.selections.push(empContributeLever);
+
+        let coverageLever: any = {
+            leverId: this.coveragesLeverId,
+            elementId: this.leverForm.value.replacingCoverage.id,
+            selectedValue: this.leverForm.value.replacingCoverage.value
+        };
+        this.ratesRequest.selections.push(coverageLever);
+
         this.response3.levers.forEach(element => {
             if (element.elements.length == 1) {
                 let obj = {
@@ -316,32 +343,7 @@ export class LeverSelectionComponent implements OnInit {
 
 
 
-        let empLever: any = {
-            leverId: this.noOfEmpsLeverId,
-            elementId: null,
-            selectedValue: this.leverForm.value.noOfEmps.toString()
-        };
-        this.ratesRequest.selections.push(empLever);
-        let planTypeLever: any = {
-            leverId: this.planTypeLeverId,
-            elementId: this.leverForm.value.typeOfPlan.id,
-            selectedValue: this.leverForm.value.typeOfPlan.value.toLowerCase()
-        };
-        this.ratesRequest.selections.push(planTypeLever);
-
-        let empContributeLever: any = {
-            leverId: this.contributesLeverId,
-            elementId: this.empContributeModel.id,
-            selectedValue: this.empContributeModel.value.toLowerCase()
-        };
-        this.ratesRequest.selections.push(empContributeLever);
-
-        let coverageLever: any = {
-            leverId: this.coveragesLeverId,
-            elementId: this.leverForm.value.replacingCoverage.id,
-            selectedValue: this.leverForm.value.replacingCoverage.value.toLowerCase()
-        };
-        this.ratesRequest.selections.push(coverageLever);
+       
 
 
 
