@@ -21,7 +21,8 @@ import {CheckboxModule} from 'primeng/checkbox';
         NgbDropdownModule.forRoot(),
         NgHttpLoaderModule,
         GrowlModule,
-        CheckboxModule
+        CheckboxModule,
+        SharedPipesModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LeverSelectionComponent,FilterPipe, FilterPipe2 ]
 })
