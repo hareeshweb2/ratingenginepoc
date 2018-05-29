@@ -4,6 +4,7 @@ import { KeysPipe } from './keys.pipe';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [KeysPipe]
+    declarations: [KeysPipe],
+    exports:[KeysPipe]
 })
 export class SharedPipesModule {}

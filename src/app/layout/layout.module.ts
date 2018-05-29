@@ -13,6 +13,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import {GrowlModule} from 'primeng/growl';
 import {CheckboxModule} from 'primeng/checkbox';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -21,8 +22,7 @@ import {CheckboxModule} from 'primeng/checkbox';
         NgbDropdownModule.forRoot(),
         NgHttpLoaderModule,
         GrowlModule,
-        CheckboxModule,
-        SharedPipesModule
+        CheckboxModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LeverSelectionComponent,FilterPipe, FilterPipe2 ]
 })
