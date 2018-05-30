@@ -23,8 +23,10 @@ export class LeverSelectionComponent implements OnInit {
 
     empContributeModel: any;
     isCopayPlan: boolean = true;
-    endPointUrl: string = "http://pricing-qa.corvestacloud.com:8708";
+    //endPointUrl: string = "http://pricing-qa.corvestacloud.com:8708";
     //endPointUrl: string="http://rhel7-ws04:8708";
+    endPointUrl: string = "http://pricing-sandbox.sandboxcorvestacloud.com:8708";
+    
     empContribute: any;
     empContributeValues: any = [
         { id: 1, value: "Yes  (show Contributory Plans only)" },
