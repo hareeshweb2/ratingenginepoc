@@ -1,17 +1,16 @@
 <p-growl [(value)]="msgs" life=7000></p-growl>
 <div [@routerTransition]>
-    <h2 class="text-muted">Create A Quote</h2>
+    <!-- <h2 class="text-muted">Create A Quote</h2> -->
 
-    <div class="row">
+    <div class="parent">
 
-        <div class="col-sm-2">
+        <div class="first">
             <form novalidate (ngSubmit)="submit()" [formGroup]="leverForm">
                 <div class="form-group">
                     <label for="efDate">Effective Date
                         <span class="mandatory">* </span>
                     </label>
                     <input type="date" class="form-control" id="efDate" aria-describedby="efDate" placeholder="Enter Effective Date" formControlName="dateEffective">
-                    <small id="effectiveDateHelp" class="form-text text-muted">help block for effective date.</small>
                     <span class="help-block" *ngIf="(leverForm.get('dateEffective').touched ||
                                                          leverForm.get('dateEffective').dirty) &&
                                                          leverForm.get('dateEffective').errors">
@@ -141,14 +140,15 @@
 
                     </span>
                 </div>
-
+<div class="btn-center">
                 <button type="submit" [disabled]="!leverForm.valid" class="btn btn-primary">Submit</button>
+                </div>
                 <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
             </form>
         </div>
 
-        <div class="col-sm-5">
+        <div class="second">
             <div class="" *ngIf="showPlans">
                 <label for="typeOfPlan" class="plan-name">Benefit Options</label>
             </div>
@@ -175,7 +175,6 @@
 
 
                 <div class="form-group">
-                    <br>
                     <br>
                     <!-- <p-checkbox name="group1"  label="Would you like to include Co-Pay plans?" [(ngModel)]="isCopayPlan" inputId="ny"></p-checkbox> -->
                     <span class="fsize">Would you like to include Co-Pay plans? &nbsp;</span>
@@ -210,7 +209,7 @@
 
         </div>
 
-        <div class="col-sm-5">
+        <div class="third">
             <!-- network level levers -->
             <section *ngIf="showRates">
 

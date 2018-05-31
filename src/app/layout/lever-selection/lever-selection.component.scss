@@ -44,8 +44,12 @@
     padding-left: 2px;
 }
 #copayid,#empid{
-    font-size: 17px!important;
-color: #313131;
+    font-size: 14px !important;
+    color: #313131;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    height: 0px;
+    line-height: 1.2;
 }
 #copayidchk{
     font-size: 17px!important;
@@ -104,12 +108,12 @@ color: #313131;
 
 div.one {
     float: left;
-    width: 40%;
+    width: 36%;
 }
 
 div.two {
     float: left;
-    width: 50%;
+    width: 62%;
     padding-top: 5px;
 }
 div.clear-fix{
@@ -123,7 +127,7 @@ div.clear-fix{
 
 span.key {
     color: #2c2b2b!important;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 13px!important;
 }
 
@@ -171,7 +175,6 @@ span.val {
 
 .btn-search-plans{
     float:right;
-    padding-top: 10px;
     margin-right: 30%;
 }
 
@@ -189,4 +192,30 @@ label.tier{
     background: #f9f9f3;
     padding: 3px;
     padding-left: 5px;
+}
+.second select{
+    background: #f1ffec;
+    font-weight: bold;
+}
+.second{
+    font-size: 13px;
+}
+
+.parent>div{
+    float:left;
+    margin-left: 2%;
+}
+.parent .first{
+    width:19%;
+}
+.parent .second{
+    width:37%;
+}
+.parent .third{
+    width:37%;
+}
+
+.btn-center{
+    text-align: center;
+    padding-top: 7px;
 }
