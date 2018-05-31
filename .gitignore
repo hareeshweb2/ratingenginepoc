@@ -6,8 +6,7 @@
 
 # dependencies
 /node_modules
-/dist
-/sandbox
+
 
 # IDEs and editors
 /.idea
