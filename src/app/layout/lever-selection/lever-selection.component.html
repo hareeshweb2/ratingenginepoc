@@ -1,302 +1,279 @@
-<p-growl [(value)]="msgs" life=7000 ></p-growl>
+<p-growl [(value)]="msgs" life=7000></p-growl>
 <div [@routerTransition]>
-    <h2 class="text-muted container">Create A Quote</h2>
-    <div class="container">
-        <div class="row">
+    <h2 class="text-muted">Create A Quote</h2>
 
-            <div class="col-sm-3">
-                <form novalidate (ngSubmit)="submit()" [formGroup]="leverForm">
-                    <div class="form-group">
-                        <label for="efDate">Effective Date</label>
-                        <input type="date" class="form-control" id="efDate" aria-describedby="efDate" placeholder="Enter Effective Date" formControlName="dateEffective">
-                        <small id="effectiveDateHelp" class="form-text text-muted">help block for effective date.</small>
-                        <span class="help-block" *ngIf="(leverForm.get('dateEffective').touched || 
-                                                         leverForm.get('dateEffective').dirty) && 
+    <div class="row">
+
+        <div class="col-sm-2">
+            <form novalidate (ngSubmit)="submit()" [formGroup]="leverForm">
+                <div class="form-group">
+                    <label for="efDate">Effective Date
+                        <span class="mandatory">* </span>
+                    </label>
+                    <input type="date" class="form-control" id="efDate" aria-describedby="efDate" placeholder="Enter Effective Date" formControlName="dateEffective">
+                    <small id="effectiveDateHelp" class="form-text text-muted">help block for effective date.</small>
+                    <span class="help-block" *ngIf="(leverForm.get('dateEffective').touched ||
+                                                         leverForm.get('dateEffective').dirty) &&
                                                          leverForm.get('dateEffective').errors">
-                            <span *ngIf="leverForm.get('dateEffective').errors.required">
-                                Please enter your effective date name.
-                            </span>
+                        <span *ngIf="leverForm.get('dateEffective').errors.required">
+                            Please enter your effective date name.
                         </span>
-                    </div>
+                    </span>
+                </div>
 
 
-
-                    <!-- <div class="form-group">
-                        <label for="region">Region</label>
-                        <select class="form-control" id="region" formControlName="region">
-      <option *ngFor="let region of arrRegions" [value]="region.value">{{region.value}}</option>
-    </select>
-                        <span class="help-block" *ngIf="(leverForm.get('region').touched || 
-                                                         leverForm.get('region').dirty) && 
-                                                         leverForm.get('region').errors">
-                            <span *ngIf="leverForm.get('region').errors.required">
-                                Please select a region.
-                            </span>
-                        </span>
-                    </div> -->
-
-
-                    <div class="form-group">
-                        <label for="typeOfPlan">Type of Plan</label>
-                        <select class="form-control" id="typeOfPlan" formControlName="typeOfPlan">
-      <option *ngFor="let plan of arrPlanTypes" [ngValue]="plan">{{plan.value}}</option>
-    </select>
-                        <span class="help-block" *ngIf="(leverForm.get('typeOfPlan').touched || 
-                                                         leverForm.get('typeOfPlan').dirty) && 
+                <div class="form-group">
+                    <label for="typeOfPlan">Type of Plan
+                        <span class="mandatory">* </span>
+                    </label>
+                    <select class="form-control" id="typeOfPlan" formControlName="typeOfPlan">
+                        <option *ngFor="let plan of arrPlanTypes" [ngValue]="plan">{{plan.value}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="(leverForm.get('typeOfPlan').touched ||
+                                                         leverForm.get('typeOfPlan').dirty) &&
                                                          leverForm.get('typeOfPlan').errors">
-                            <span *ngIf="leverForm.get('typeOfPlan').errors.required">
-                                Please select type of plan.
-                            </span>
+                        <span *ngIf="leverForm.get('typeOfPlan').errors.required">
+                            Please select type of plan.
                         </span>
-                    </div>
+                    </span>
+                </div>
 
-                    <div class="form-group">
-                        <label for="replacingCoverage">REPLACING COVERAGE</label>
-                        <select class="form-control" id="replacingCoverage" formControlName="replacingCoverage">
-      <option *ngFor="let cov of arrCoverages" [ngValue]="cov">{{cov.value}}</option>
-    </select>
-                        <span class="help-block" *ngIf="(leverForm.get('replacingCoverage').touched || 
-                                                         leverForm.get('replacingCoverage').dirty) && 
+                <div class="form-group">
+                    <label for="replacingCoverage">REPLACING COVERAGE
+                        <span class="mandatory">* </span>
+                    </label>
+                    <select class="form-control" id="replacingCoverage" formControlName="replacingCoverage">
+                        <option *ngFor="let cov of arrCoverages" [ngValue]="cov">{{cov.value}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="(leverForm.get('replacingCoverage').touched ||
+                                                         leverForm.get('replacingCoverage').dirty) &&
                                                          leverForm.get('replacingCoverage').errors">
-                            <span *ngIf="leverForm.get('replacingCoverage').errors.required">
-                                Please select replacing coverage.
-                            </span>
+                        <span *ngIf="leverForm.get('replacingCoverage').errors.required">
+                            Please select replacing coverage.
                         </span>
-                    </div>
+                    </span>
+                </div>
 
 
-                    <div class="form-group nic">
-                        <label for="typeOfPlan">Naics Code</label>
-                        <!-- <select class="form-control" id="nics" formControlName="nics">
-     <option *ngFor="let naic of arrNAICS" [value]="naic.value">{{naic.value}}</option>
-    </select> -->
-    <input class="form-control" id="naicCode" aria-describedby="naicCode" placeholder="Naic" formControlName="nics">
-                        <span class="help-block" *ngIf="(leverForm.get('nics').touched || 
-                                                         leverForm.get('nics').dirty) && 
+                <div class="form-group nic">
+                    <label for="typeOfPlan">Naics Code
+                        <span class="mandatory">* </span>
+                    </label>
+
+                    <input class="form-control" id="naicCode" aria-describedby="naicCode" placeholder="Naic" formControlName="nics">
+                    <span class="help-block" *ngIf="(leverForm.get('nics').touched ||
+                                                         leverForm.get('nics').dirty) &&
                                                          leverForm.get('nics').errors">
-                            <span *ngIf="leverForm.get('nics').errors.required">
-                                Please select Naics Code.
-                            </span>
+                        <span *ngIf="leverForm.get('nics').errors.required">
+                            Please select Naics Code.
                         </span>
-                    </div>
+                    </span>
+                </div>
 
 
 
 
-                    <div class="form-group">
-                        <label for="zipCode">ZipCode</label>
-                        <input class="form-control" id="zipCode" aria-describedby="zipCode" placeholder="Zip Code" formControlName="zipCode">
-                        <span class="help-block" *ngIf="(leverForm.get('zipCode').touched || 
-                                                         leverForm.get('zipCode').dirty) && 
+                <div class="form-group">
+                    <label for="zipCode">ZipCode
+                        <span class="mandatory">* </span>
+                    </label>
+                    <input class="form-control" id="zipCode" aria-describedby="zipCode" placeholder="Zip Code" formControlName="zipCode">
+                    <span class="help-block" *ngIf="(leverForm.get('zipCode').touched ||
+                                                         leverForm.get('zipCode').dirty) &&
                                                          leverForm.get('zipCode').errors">
-                            <span *ngIf="leverForm.get('zipCode').errors.required">
-                                Please enter your zip code name.
-                            </span>
+                        <span *ngIf="leverForm.get('zipCode').errors.required">
+                            Please enter your zip code name.
+                        </span>
 
                         <span *ngIf="leverForm.get('zipCode').errors.pattern">
-                                Zip Code should contain only numbers and length should be 5
-                            </span>
-
+                            Zip Code should contain only numbers and length should be 5
                         </span>
-                    </div>
 
-
-                    <div class="form-group">
-                        <label for="noOfEmps">Eligible No Of Employees</label>
-                        <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="Eligible No Of Employees" aria-describedby="Eligible No Of Employees" placeholder="Eligible No Of Employees" formControlName="eligibleNumberOfEmps">
-                        <span class="help-block" *ngIf="(leverForm.get('eligibleNumberOfEmps').touched || 
-                                                         leverForm.get('eligibleNumberOfEmps').dirty) && 
-                                                         leverForm.get('eligibleNumberOfEmps').errors">
-                            <span *ngIf="leverForm.get('eligibleNumberOfEmps').errors.required">
-                                Please enter Eligible No Of Employees.
-                            </span>
-
-                        </span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="noOfEmps">No Of Employees</label>
-                        <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="noOfEmps" aria-describedby="noOfEmps" placeholder="No Of Employeess" formControlName="noOfEmps">
-                        <span class="help-block" *ngIf="(leverForm.get('noOfEmps').touched || 
-                                                         leverForm.get('noOfEmps').dirty) && 
-                                                         leverForm.get('noOfEmps').errors">
-                            <span *ngIf="leverForm.get('noOfEmps').errors.required">
-                                Please enter No Of Employees.
-                            </span>
-
-                        </span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="noOfEmpsVA">No Of Employees outside VA</label>
-                        <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="noOfEmpsVA" aria-describedby="noOfEmpsVA" placeholder="No Of Employeess outside VA" formControlName="noOfEmpsVA">
-                        <span class="help-block" *ngIf="(leverForm.get('noOfEmpsVA').touched || 
-                                                         leverForm.get('noOfEmpsVA').dirty) && 
-                                                         leverForm.get('noOfEmpsVA').errors">
-                            <span *ngIf="leverForm.get('noOfEmpsVA').errors.required">
-                                Please enter No Of Employees residing outside VA.
-                            </span>
-
-                        </span>
-                    </div>
-
-                    <button type="submit" [disabled]="!leverForm.valid" class="btn btn-primary">Submit</button>
-                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-
-                </form>
-            </div>
-
-            <div class="col-sm-8">
-                <div class="" *ngIf="showPlans">
-                    <label for="typeOfPlan" class="plan-name">Benefit Options</label>
-                    <!-- <select class="" id="availPlan" [(ngModel)]="selectedPlan" (change)="getResponseForPlan()">
-      <option *ngFor="let plan1 of plans"[ngValue]="plan1">
-          {{plan1.value}}
-      </option>
-     
-    </select> -->
+                    </span>
                 </div>
-               
-
-                <section *ngIf="selectedPlan">
 
 
+                <div class="form-group">
+                    <label for="noOfEmps">Eligible No Of Employees
+                        <span class="mandatory">* </span>
+                    </label>
+                    <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="Eligible No Of Employees"
+                        aria-describedby="Eligible No Of Employees" placeholder="Eligible No Of Employees" formControlName="eligibleNumberOfEmps">
+                    <span class="help-block" *ngIf="(leverForm.get('eligibleNumberOfEmps').touched ||
+                                                         leverForm.get('eligibleNumberOfEmps').dirty) &&
+                                                         leverForm.get('eligibleNumberOfEmps').errors">
+                        <span *ngIf="leverForm.get('eligibleNumberOfEmps').errors.required">
+                            Please enter Eligible No Of Employees.
+                        </span>
 
-                    <div class="" *ngFor="let lever of leversWithoutNetworks">
-
-                        <label for="typeOfPlan"> {{lever.name}}: </label>
-                        <span class="nx" *ngIf="lever.elements.length==1"> {{lever.elements[0].value}}</span>
-                        <section style="display:inline-block" *ngIf="lever.elements.length!=1" class="vall">
-                            <select class="" [(ngModel)]="lever.selectedValue">
-                        <option *ngFor="let element of lever.elements" [ngValue]="element">
-                        {{element.value}}
-                        </option>
-                        </select>
-                        </section>
-                    </div>
-
-
-
-
-                    <div class="form-group">
-                        <br><br>
-                        <!-- <p-checkbox name="group1"  label="Would you like to include Co-Pay plans?" [(ngModel)]="isCopayPlan" inputId="ny"></p-checkbox> -->
-                    <span class="fsize">Would you like to include Co-Pay plans?</span>
-                        <input type="checkbox" id="copayidchk" [(ngModel)]="isCopayPlan">
-                    </div>
-
-                    <div>
-
-                        <label id="empid" for="empContribute"> Will employer contribute toward the cost of the employee’s dental coverage? </label>
-                        
-                        <section style="display:inline-block" class="vall">
-                            <select class="fsize" [(ngModel)]="empContributeModel">
-                        <option *ngFor="let element of arrContributes" [ngValue]="element">
-                        {{element.value}}
-                        </option>
-                        </select>
-                        </section>
-                    </div>
+                    </span>
+                </div>
 
 
-                    
-                    <br>
-                    <button style="float:right" type="button" class="btn btn-primary" (click)="getRates()">Search Plans</button>
-                    <br>
-                    <br>
-                </section>
+                <div class="form-group">
+                    <label for="noOfEmps">No Of Employees
+                        <span class="mandatory">* </span>
+                    </label>
+                    <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="noOfEmps" aria-describedby="noOfEmps"
+                        placeholder="No Of Employeess" formControlName="noOfEmps">
+                    <span class="help-block" *ngIf="(leverForm.get('noOfEmps').touched ||
+                                                         leverForm.get('noOfEmps').dirty) &&
+                                                         leverForm.get('noOfEmps').errors">
+                        <span *ngIf="leverForm.get('noOfEmps').errors.required">
+                            Please enter No Of Employees.
+                        </span>
 
-                <!-- network level levers -->
-                <section *ngIf="showRates">
+                    </span>
+                </div>
 
+                <div class="form-group">
+                    <label for="noOfEmpsVA">No Of Employees outside VA
+                        <span class="mandatory">* </span>
+                    </label>
+                    <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="noOfEmpsVA" aria-describedby="noOfEmpsVA"
+                        placeholder="No Of Employeess outside VA" formControlName="noOfEmpsVA">
+                    <span class="help-block" *ngIf="(leverForm.get('noOfEmpsVA').touched ||
+                                                         leverForm.get('noOfEmpsVA').dirty) &&
+                                                         leverForm.get('noOfEmpsVA').errors">
+                        <span *ngIf="leverForm.get('noOfEmpsVA').errors.required">
+                            Please enter No Of Employees residing outside VA.
+                        </span>
 
-                    <!-- <section *ngFor="let network of networksList" class="network-panel">
-                        <div class="network-name"><span>Network - </span>{{network}}</div>
-                        <div class="form-group" *ngFor="let lever of updatedFormatOfLeversAfterAllLeversSelected | filter:network">
-                            <label for="typeOfPlan">{{lever.name}}</label>
+                    </span>
+                </div>
 
-                            <select *ngIf="lever?.elements?.length>1" class="form-control" [(ngModel)]="lever.selectedElement">
-                            <option  value="">select</option>
-      <option *ngFor="let element of lever?.elements" [value]="element.id">
-         &nbsp;{{element.value}}%
-      </option>
-    </select>
-                            <span *ngIf="lever?.elements?.length===1">&nbsp;{{lever.elements[0].value}}%  </span>
-                        </div>
+                <button type="submit" [disabled]="!leverForm.valid" class="btn btn-primary">Submit</button>
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
+            </form>
+        </div>
 
-                    </section> -->
-
-
-
-
-
-                    <div class="rats">Plans</div>
-                    <!-- Ratings -->
-                    <section>
-
-
-                        <!-- <section *ngFor="let network of networksList" class="network-panel">
-                            <div class="network-name">{{network}}</div>
-                            <div class="form-group" *ngFor="let rate of rates | filterForRates:network">
-                                <label for="">{{rate.tier}}</label>
-
-
-                                <span>&nbsp;{{rate.amount}}  </span>
-                            </div>
-
-
-                        </section> -->
-
-
-                         <section class="network-panel" style="padding-top:12px">
-                            <!-- <div class="network-name">{{network}}</div> -->
-                            <div class="form-group" *ngFor="let ratedPlan of rates.ratedPlans">
-
-                                <div class="one">
-                                        <div class="plan-name">{{ratedPlan.name}}</div>
-                                        <div class=""  *ngFor="let rateGroup of ratedPlan.rateGroups">
-                                            <div class="rate-grp">
-                                                <span class="spn">{{rateGroup.groupName}}</span>
-                                                <div class="rates" *ngFor="let rate of rateGroup.rates">
-                                                    <label for="">{{rate.tier}}</label>
-                                                    <span>&nbsp;{{rate.amount}}  </span>
-                                                </div>
-                                            </div>
-                                            
-        
-                                        </div>
-                                </div>
-                                <div class="two">
-                                   <div class="limitation" *ngFor="let entry of ratedPlan.limitations | keys">
-                                            <span class="key">{{entry.key}}:</span> <span class="val">{{entry.value}}</span>
-                                   </div> 
-                                </div>
-                                <div class="clear-fix"></div>
-                               
-
-                                
-
-
-                            </div>
-
-
-                        </section>
-
-
-                    </section>
-
-                </section>
-
+        <div class="col-sm-5">
+            <div class="" *ngIf="showPlans">
+                <label for="typeOfPlan" class="plan-name">Benefit Options</label>
             </div>
+
+
+            <section *ngIf="selectedPlan">
+
+
+
+                <div class="" *ngFor="let lever of leversWithoutNetworks">
+
+                    <label for="typeOfPlan"> {{lever.name}}: &nbsp;</label>
+                    <span class="nx" *ngIf="lever.elements.length==1"> {{lever.elements[0].value}}</span>
+                    <section style="display:inline-block" *ngIf="lever.elements.length!=1" class="vall">
+                        <select class="" [(ngModel)]="lever.selectedValue">
+                            <option *ngFor="let element of lever.elements" [ngValue]="element">
+                                {{element.value}}
+                            </option>
+                        </select>
+                    </section>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <br>
+                    <br>
+                    <!-- <p-checkbox name="group1"  label="Would you like to include Co-Pay plans?" [(ngModel)]="isCopayPlan" inputId="ny"></p-checkbox> -->
+                    <span class="fsize">Would you like to include Co-Pay plans? &nbsp;</span>
+                    <input type="checkbox" id="copayidchk" [(ngModel)]="isCopayPlan">
+                </div>
+
+                <div>
+
+                    <label id="empid" for="empContribute"> Will employer contribute toward the cost of the employee’s dental coverage?
+                        <span class="mandatory">* </span> &nbsp; </label>
+                    <section style="float:right;padding-right:25px" class="vall">
+                        <select class="fsize" [(ngModel)]="empContributeModel">
+                            <option *ngFor="let element of arrContributes" [ngValue]="element">
+                                {{element.value}}
+                            </option>
+                        </select>
+                    </section>
+                </div>
+
+
+
+                <br>
+                <br>
+                <div class="btn-search-plans">
+                <button [disabled]="!empContributeModel" type="button" class="btn btn-primary btn-search-plans" (click)="getRates()">Search Plans</button>
+                </div>
+                <br>
+                <br>
+            </section>
 
 
 
         </div>
+
+        <div class="col-sm-5">
+            <!-- network level levers -->
+            <section *ngIf="showRates">
+
+
+
+
+
+
+                <label for="typeOfPlan" class="plan-name">Plans</label>
+                <!-- Ratings -->
+                <section>
+
+
+
+                    <section class="network-panel" style="padding-top:12px">
+                        <!-- <div class="network-name">{{network}}</div> -->
+                        <div class="rat-plan form-group" *ngFor="let ratedPlan of rates.ratedPlans">
+                            <div class="plan-name selected">{{ratedPlan.name}}</div>
+                            <div class="one">
+                                <div class="" *ngFor="let rateGroup of ratedPlan.rateGroups">
+                                    <div class="rate-grp">
+                                        <div class="spn">{{rateGroup.groupName}}</div>
+                                        <div class="rates" *ngFor="let rate of rateGroup.rates">
+                                            <label for="" class="tier">{{rate.tier}}</label>
+                                            <span>&nbsp;{{rate.amount}} </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="two">
+                                <div class="limitation" *ngFor="let entry of ratedPlan.limitations | keys">
+                                    <span class="key">{{entry.key}}:</span>
+                                    <span class="val">{{entry.value}}</span>
+                                </div>
+                                <div class="network-details" *ngFor="let entry of ratedPlan.networkPaymentDetails">
+                                    <div class="inner-network">
+                                        <label for="">Network&nbsp; </label>{{entry.network}} </div>
+                                    <div class="network" *ngFor="let detail of entry.details | keys">
+                                        <span class="key">{{detail.key}}&nbsp;</span>
+                                        <span class="val">{{detail.value}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-fix"></div>
+
+
+
+
+
+                        </div>
+
+
+                    </section>
+
+
+                </section>
+
+            </section>
+
+        </div>
+
     </div>
-
-
-
 
 </div>
