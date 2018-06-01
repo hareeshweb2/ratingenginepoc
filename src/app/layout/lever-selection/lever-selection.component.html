@@ -243,7 +243,7 @@
                             </div>
                             <div class="two">
                                 <div class="limitation" *ngFor="let entry of ratedPlan.limitations | keys">
-                                    <span class="key">{{entry.key}}:</span>
+                                    <span class="key">{{entry.key}}: &nbsp;</span>
                                     <span class="val">{{entry.value}}</span>
                                 </div>
                                 <div class="network-details" *ngFor="let entry of ratedPlan.networkPaymentDetails">

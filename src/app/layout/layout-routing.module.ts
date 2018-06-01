@@ -9,7 +9,7 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: '', component:LeverSelectionComponent },
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'dashboard', component:LeverSelectionComponent },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'lever-selection',component:LeverSelectionComponent }
         ]

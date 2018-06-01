@@ -15,9 +15,10 @@ import { Message } from 'primeng/api';
 export class LeverSelectionComponent implements OnInit {
     empContributeModel: any;
     isCopayPlan: boolean = true;
-    endPointUrl: string = "http://pricing-qa.corvestacloud.com:8708";
-    //endPointUrl: string="http://rhel7-ws04:8708";
-    //endPointUrl: string = 'http://pricing-sandbox.sandboxcorvestacloud.com:8708';
+ //endPointUrl: string="http://rhel7-ws04:8708";  //local atanu's
+
+    //endPointUrl: string = "http://pricing-qa.corvestacloud.com:8708"; //qa
+    endPointUrl: string = 'http://pricing-sandbox.sandboxcorvestacloud.com:8708';
 
     empContribute: any;
     empContributeValues: any = [
