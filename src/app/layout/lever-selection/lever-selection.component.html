@@ -32,13 +32,13 @@
                                                          leverForm.get('typeOfPlan').dirty) &&
                                                          leverForm.get('typeOfPlan').errors">
                         <span *ngIf="leverForm.get('typeOfPlan').errors.required">
-                            Please select type of plan.
+                            {{display_PlanTypes_Lever}}
                         </span>
                     </span>
                 </div>
 
                 <div class="form-group">
-                    <label for="replacingCoverage">REPLACING COVERAGE
+                    <label for="replacingCoverage">{{display_replacingCoverage_Lever}}
                         <span class="mandatory">* </span>
                     </label>
                     <select class="form-control" id="replacingCoverage" formControlName="replacingCoverage">
@@ -55,7 +55,7 @@
 
 
                 <div class="form-group nic">
-                    <label for="typeOfPlan">Naics Code
+                    <label for="typeOfPlan">{{display_naics_lever}}
                         <span class="mandatory">* </span>
                     </label>
 
@@ -110,7 +110,7 @@
 
 
                 <div class="form-group">
-                    <label for="noOfEmps">No Of Employees
+                    <label for="noOfEmps">{{display_NoOfEmps_Lever}}
                         <span class="mandatory">* </span>
                     </label>
                     <input onkeypress="return event.charCode >= 48" type="number" min="0" step="1" class="form-control" id="noOfEmps" aria-describedby="noOfEmps"
@@ -160,7 +160,7 @@
 
                 <div class="" *ngFor="let lever of leversWithoutNetworks">
 
-                    <label for="typeOfPlan"> {{lever.name}}: &nbsp;</label>
+                    <label for="typeOfPlan"> {{lever.displayLeverName}}: &nbsp;</label>
                     <span class="nx" *ngIf="lever.elements.length==1"> {{lever.elements[0].value}}</span>
                     <section style="display:inline-block" *ngIf="lever.elements.length!=1" class="vall">
                         <select class="" [(ngModel)]="lever.selectedValue">
@@ -183,7 +183,7 @@
 
                 <div>
 
-                    <label id="empid" for="empContribute"> Will employer contribute toward the cost of the employee’s dental coverage?
+                    <label id="empid" for="empContribute"> {{display_employerContribute_Lever}}
                         <span class="mandatory">* </span> &nbsp; </label>
                     <section style="float:right;padding-right:25px" class="vall">
                         <select class="fsize" [(ngModel)]="empContributeModel">

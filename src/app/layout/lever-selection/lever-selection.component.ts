@@ -64,6 +64,11 @@ export class LeverSelectionComponent implements OnInit {
     coveragesLeverId: any;
     contributesLeverId: any;
     planLeverId: any;
+    display_NoOfEmps_Lever: any;
+    display_PlanTypes_Lever: any;
+    display_replacingCoverage_Lever: any;
+    display_employerContribute_Lever: any;
+    display_naics_lever = "NAICS or SIC";
 
     constructor(private fb: FormBuilder, private http: HttpClient) {}
 
@@ -112,30 +117,34 @@ export class LeverSelectionComponent implements OnInit {
                         this.plans = [];
                         return;
                     } else {
-                        this.arrNoOfEmps = this.initialResponse.levers.find(
+                        let noOfEmps_Lever = this.initialResponse.levers.find(
                             i => i.name == 'NUMBER OF EMPLOYEES'
-                        ).elements;
-                        this.noOfEmpsLeverId = this.initialResponse.levers.find(
-                            i => i.name == 'NUMBER OF EMPLOYEES'
-                        ).id;
-                        this.arrPlanTypes = this.initialResponse.levers.find(
+                        );
+                        this.arrNoOfEmps = noOfEmps_Lever.elements;
+                        this.noOfEmpsLeverId = noOfEmps_Lever.id;
+                        this.display_NoOfEmps_Lever = noOfEmps_Lever.displayLeverName;
+
+                        let planTypes_Lever = this.initialResponse.levers.find(
                             i => i.name == 'PLAN TYPE'
-                        ).elements;
-                        this.planTypeLeverId = this.initialResponse.levers.find(
-                            i => i.name == 'PLAN TYPE'
-                        ).id;
-                        this.arrCoverages = this.initialResponse.levers.find(
+                        );
+                        this.arrPlanTypes = planTypes_Lever.elements;
+                        this.planTypeLeverId = planTypes_Lever.id;
+                        this.display_PlanTypes_Lever = planTypes_Lever.displayLeverName;
+
+                        let replacingCoverage_Lever =this.initialResponse.levers.find(
                             i => i.name == 'REPLACING COVERAGE'
-                        ).elements;
-                        this.coveragesLeverId = this.initialResponse.levers.find(
-                            i => i.name == 'REPLACING COVERAGE'
-                        ).id;
-                        this.arrContributes = this.initialResponse.levers.find(
+                        );
+                        this.arrCoverages = replacingCoverage_Lever.elements;
+                        this.coveragesLeverId = replacingCoverage_Lever.id;
+                        this.display_replacingCoverage_Lever = replacingCoverage_Lever.displayLeverName;
+
+                        let employerContribute_Lever =this.initialResponse.levers.find(
                             i => i.name == 'EMPLOYER WILL CONTRIBUTE'
-                        ).elements;
-                        this.contributesLeverId = this.initialResponse.levers.find(
-                            i => i.name == 'EMPLOYER WILL CONTRIBUTE'
-                        ).id;
+                        );
+                        this.arrContributes = employerContribute_Lever.elements;
+                        this.contributesLeverId = employerContribute_Lever.id;
+                        this.display_employerContribute_Lever = employerContribute_Lever.displayLeverName;
+
                     }
                 },
                 error => {
