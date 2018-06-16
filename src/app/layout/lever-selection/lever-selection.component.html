@@ -22,7 +22,7 @@
 
 
                 <div class="form-group">
-                    <label for="typeOfPlan">Type of Plan
+                    <label for="typeOfPlan">{{display_PlanTypes_Lever}}
                         <span class="mandatory">* </span>
                     </label>
                     <select class="form-control" id="typeOfPlan" formControlName="typeOfPlan">
@@ -32,7 +32,7 @@
                                                          leverForm.get('typeOfPlan').dirty) &&
                                                          leverForm.get('typeOfPlan').errors">
                         <span *ngIf="leverForm.get('typeOfPlan').errors.required">
-                            {{display_PlanTypes_Lever}}
+                            please select {{display_PlanTypes_Lever}}
                         </span>
                     </span>
                 </div>
@@ -231,7 +231,7 @@
                             <div class="one">
                                 <div class="" *ngFor="let rateGroup of ratedPlan.rateGroups">
                                     <div class="rate-grp">
-                                        <div class="spn">{{rateGroup.groupName}}</div>
+                                        <div class="spn">{{rateGroup.benefitPeriod}}</div>
                                         <div class="rates" *ngFor="let rate of rateGroup.rates">
                                             <label for="" class="tier">{{rate.tier}}</label>
                                             <span>&nbsp;{{rate.amount}} </span>
